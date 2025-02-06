@@ -12,6 +12,8 @@ Dockerfile
 criar_user.py
 Cria_grupo.py
 upload_datalake.py
+.dockerignore
+.gitignore
 ### Flask.Python Stack ###
 # Byte-compiled / optimized / DLL files
 __pycache__/
