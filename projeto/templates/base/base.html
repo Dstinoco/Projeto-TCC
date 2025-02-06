@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" rel="preload" crossorigin="anonymous"></script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css" rel="stylesheet" />
+  <link rel="icon" type="image/x-icon" href="../../static/img/logo-home.png" />
+  <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/upload.css') }}" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/tabela.css') }}" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/modal_cadastro_novo.css') }}" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/menuHamburguer.css') }}" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/dicionario.css') }}" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/tags.css') }}" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/copybtn.css') }}" />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet" />
+
+
+  <!-- teste de copiar query -->
+
+
+
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.css">
+  <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.js"></script>
+
+
+
+</head>
+<title>Portal Dados</title>
+
+<body class="sb-nav-fixed">
+  {% include 'base/cabecalho.html' %}
+
+  {% block conteudo %}
+
+  <div id="dash-container">
+    <!-- O Dash será injetado aqui -->
+  </div>
+
+
+  {% endblock %}
+
+  <!-- JS + DataTables JS -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" defer></script>
+  <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" crossorigin="anonymous" defer></script>
+  <script src="{{ url_for('static', filename='js/toggleDivs.js')}}" defer></script>
+  <script src="{{ url_for('static', filename='js/datatables-simple-demo.js')}}" defer></script>
+  <script src="{{ url_for('static', filename='js/carrega_tabela.js')}}" defer></script>
+  <script src="{{ url_for('static', filename='js/scripts.js')}}" defer></script>
+  <script src="{{ url_for('static', filename='js/demo/chart-area-demo.js')}}" defer></script>
+  <script src="{{ url_for('static', filename='js/demo/chart-bar-demo.js')}}" defer></script>
+  <script src="{{ url_for('static', filename='js/demo/chart-pie-demo.js')}}" defer></script>
+  <script src="{{ url_for('static', filename='js/demo/datatables-demo.js')}}" defer></script>
+  <script src="{{ url_for('static', filename='js/vinculaGrupoFuncionalidade.js')}}" defer></script>
+  <script src="{{ url_for('static', filename='js/statusCadastro.js')}}" defer></script>
+  <script src="{{ url_for('static', filename='js/simple-datatables.min.js')}}" defer></script>
+  <script src="{{ url_for('static', filename='js/menuHamburguer.js')}}" defer></script>
+  <script src="{{ url_for('static', filename='js/dicionario.js')}}" defer></script>
+
+
+</body>
+
+</html>

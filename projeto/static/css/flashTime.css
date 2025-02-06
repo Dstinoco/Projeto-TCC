@@ -1,0 +1,11 @@
+.alert {
+    position: absolute;
+    top: 20px;
+    right: 10px;
+    z-index: 1050;
+    width: auto;
+    max-width: 400px;
+    padding-bottom: 20px; /* Adicione espaço para a barra de progresso */
+    opacity: 1; /* Inicialmente opaco */
+    transition: opacity 0.5s ease-in-out; /* Transição suave para opacidade */
+}

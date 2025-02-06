@@ -1,0 +1,28 @@
+{% extends 'base/base.html' %}
+
+{% block conteudo %}
+
+
+{% set mensagens = get_flashed_messages(with_categories=true) %}
+<div class="container content">
+    <div class="row">
+        <div class="msgm-usr col-10 text-center">
+            <a href="/index""><img src=" ../static/img/back-return-svgrepo-com.svg"></a>
+        </div>
+    </div>
+    <div class="row container-usr">
+
+
+        {% if 1 in permissoes %}
+        <div class="lay-usr col-12 col-sm-6 col-md-4 col-lg-3" onclick="window.location.href='dashboard/portal_dados'">
+            <img src="../static/img/circular-cake-graphic-with-quarter-part-cutted-svgrepo-com.svg" alt="cadastro de layout">
+            <p>Portal Dados</p>
+        </div>
+        {% endif %}
+
+
+
+    </div>
+
+
+    {% endblock %}

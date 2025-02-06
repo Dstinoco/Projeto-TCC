@@ -1,0 +1,435 @@
+/* Estilos gerais para resetar margens e paddings padrões */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f2f2f2;
+}
+
+header {
+    background-color: #fff;
+    padding: 10px 0;
+}
+
+.header-container {
+    height: 120px;
+    margin: 0 80px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 18px;
+}
+
+.home-logo {
+    display: flex;
+    align-items: center;
+}
+
+.home-logo img {
+    width: 56px;
+    margin-right: 16px;
+}
+
+.home-logo span {
+    font-size: 36px;
+    font-weight: bold;
+    font-family: "poppins";
+}
+
+.home-inicio button {
+    -webkit-box-align: center;
+    align-items: center;
+    background-color: #A0C938;
+    border-radius: 56px;
+    border: none;
+    display: flex;
+    gap: 12px;
+    outline: none;
+    padding: 16px 24px;
+    transition: all 0.4s ease 0s;
+    cursor: pointer;
+}
+
+.home-inicio span {
+    font-size: 18px;
+    font-weight: bold;
+    color: #fff;
+    font-family: "Roboto", sans-serif, Arial;
+}
+
+.home-perfil h3 {
+    margin: 0 20px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.content {
+    padding: 20px;
+}
+
+.msgm-usr {
+
+    height: 100px;
+    margin: 15px auto;
+    background-color: #fff;
+    border-radius: 24px;
+    display: flex;
+    gap: 40px;
+    padding: 16px 34px;
+    -webkit-box-align: center;
+    align-items: center;
+}
+
+.msgm-usr h2 {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 24px;
+    color: rgb(79, 79, 79);
+}
+
+.msgm-usr p {
+    font-family: "Roboto";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 22px;
+    letter-spacing: 0.25px;
+    color: rgb(79, 79, 79);
+}
+
+/* DIV Funcionalidades - Inicio */
+.container-usr {
+    display: flex;
+    justify-content: center;
+}
+
+a {
+    text-decoration: none;
+    color: #000;
+}
+
+a:hover {
+    text-decoration: none;
+    color: #000;
+}
+
+/* Configurações */
+.cad-usr {
+    text-align: center;
+    padding: 10px;
+    margin: 20px 20px;
+    width: 220px;
+    height: 224px;
+    background-color: #fff;
+    border-radius: 24px;
+    border: none;
+    cursor: pointer;
+
+}
+
+.cad-usr:hover {
+    box-shadow: 12px 16px 28px -12px rgba(209, 209, 209, 0.79);
+    -webkit-box-shadow: 12px 16px 28px -12px rgba(209, 209, 209, 0.79);
+    -moz-box-shadow: 12px 16px 28px -12px rgba(209, 209, 209, 0.79);
+}
+
+.cad-usr img {
+    margin: 30px;
+    width: 4.5rem;
+    height: 4.5rem;
+}
+
+.cad-usr p {
+    font-family: "Roboto";
+    font-style: normal;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 21px;
+    text-align: center;
+    letter-spacing: 0.25px;
+    color: rgb(79, 79, 79);
+}
+
+
+
+/*Grupo de usuários */
+
+.grp-usr {
+    text-align: center;
+    padding: 10px;
+    margin: 20px 20px;
+    width: 220px;
+    height: 224px;
+    background-color: #fff;
+    border-radius: 24px;
+    border: none;
+    cursor: pointer;
+
+}
+
+.grp-usr:hover {
+    box-shadow: 12px 16px 28px -12px rgba(209, 209, 209, 0.79);
+    -webkit-box-shadow: 12px 16px 28px -12px rgba(209, 209, 209, 0.79);
+    -moz-box-shadow: 12px 16px 28px -12px rgba(209, 209, 209, 0.79);
+}
+
+.grp-usr img {
+    margin: 30px;
+    width: 4.5rem;
+    height: 4.5rem;
+}
+
+.grp-usr p {
+    font-family: "Roboto";
+    font-style: normal;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 21px;
+    text-align: center;
+    letter-spacing: 0.25px;
+    color: rgb(79, 79, 79);
+}
+
+/* Layout */
+
+.lay-usr {
+    text-align: center;
+    padding: 10px;
+    margin: 20px 20px;
+    width: 220px;
+    height: 224px;
+    background-color: #fff;
+    border-radius: 24px;
+    border: none;
+    cursor: pointer;
+
+}
+
+.lay-usr:hover {
+    box-shadow: 12px 16px 28px -12px rgba(209, 209, 209, 0.79);
+    -webkit-box-shadow: 12px 16px 28px -12px rgba(209, 209, 209, 0.79);
+    -moz-box-shadow: 12px 16px 28px -12px rgba(209, 209, 209, 0.79);
+}
+
+.lay-usr img {
+    margin: 30px;
+    width: 4.5rem;
+    height: 4.5rem;
+}
+
+.lay-usr p {
+    font-family: "Roboto";
+    font-style: normal;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 21px;
+    text-align: center;
+    letter-spacing: 0.25px;
+    color: rgb(79, 79, 79);
+}
+
+
+/* Layout grupo*/
+
+.laygrp-usr {
+    text-align: center;
+    padding: 10px;
+    margin: 20px 20px;
+    width: 220px;
+    height: 224px;
+    background-color: #fff;
+    border-radius: 24px;
+    border: none;
+    cursor: pointer;
+
+}
+
+.laygrp-usr:hover {
+    box-shadow: 12px 16px 28px -12px rgba(209, 209, 209, 0.79);
+    -webkit-box-shadow: 12px 16px 28px -12px rgba(209, 209, 209, 0.79);
+    -moz-box-shadow: 12px 16px 28px -12px rgba(209, 209, 209, 0.79);
+}
+
+.laygrp-usr img {
+    margin: 30px;
+    width: 4.5rem;
+    height: 4.5rem;
+}
+
+.laygrp-usr p {
+    font-family: "Roboto";
+    font-style: normal;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 21px;
+    text-align: center;
+    letter-spacing: 0.25px;
+    color: rgb(79, 79, 79);
+}
+
+
+
+
+
+
+/* Upload*/
+
+.up-usr {
+    text-align: center;
+    padding: 10px;
+    margin: 20px 20px;
+    width: 220px;
+    height: 224px;
+    background-color: #fff;
+    border-radius: 24px;
+    border: none;
+    cursor: pointer;
+
+}
+
+.up-usr:hover {
+    box-shadow: 12px 16px 28px -12px rgba(209, 209, 209, 0.79);
+    -webkit-box-shadow: 12px 16px 28px -12px rgba(209, 209, 209, 0.79);
+    -moz-box-shadow: 12px 16px 28px -12px rgba(209, 209, 209, 0.79);
+}
+
+.up-usr img {
+    margin: 30px;
+    width: 4.5rem;
+    height: 4.5rem;
+}
+
+.up-usr p {
+    font-family: "Roboto";
+    font-style: normal;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 21px;
+    text-align: center;
+    letter-spacing: 0.25px;
+    color: rgb(79, 79, 79);
+}
+
+/* Download */
+
+.down-usr {
+    text-align: center;
+    padding: 10px;
+    margin: 20px 20px;
+    width: 220px;
+    height: 224px;
+    background-color: #fff;
+    border-radius: 24px;
+    border: none;
+    cursor: pointer;
+
+}
+
+.down-usr:hover {
+    box-shadow: 12px 16px 28px -12px rgba(209, 209, 209, 0.79);
+    -webkit-box-shadow: 12px 16px 28px -12px rgba(209, 209, 209, 0.79);
+    -moz-box-shadow: 12px 16px 28px -12px rgba(209, 209, 209, 0.79);
+}
+
+.down-usr img {
+    margin: 30px;
+    width: 4.5rem;
+    height: 4.5rem;
+}
+
+.down-usr p {
+    font-family: "Roboto";
+    font-style: normal;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 21px;
+    text-align: center;
+    letter-spacing: 0.25px;
+    color: rgb(79, 79, 79);
+}
+
+/* Funcionalidades*/
+
+.func-usr {
+    text-align: center;
+    padding: 10px;
+    margin: 20px 20px;
+    width: 220px;
+    height: 224px;
+    background-color: #fff;
+    border-radius: 24px;
+    border: none;
+    cursor: pointer;
+
+}
+
+.func-usr:hover {
+    box-shadow: 12px 16px 28px -12px rgba(209, 209, 209, 0.79);
+    -webkit-box-shadow: 12px 16px 28px -12px rgba(209, 209, 209, 0.79);
+    -moz-box-shadow: 12px 16px 28px -12px rgba(209, 209, 209, 0.79);
+}
+
+.func-usr img {
+    margin: 30px;
+    width: 4.5rem;
+    height: 4.5rem;
+}
+
+.func-usr p {
+    font-family: "Roboto";
+    font-style: normal;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 21px;
+    text-align: center;
+    letter-spacing: 0.25px;
+    color: rgb(79, 79, 79);
+}
+
+/* Funcionalidade grupo*/
+
+.funcgrp-usr {
+    text-align: center;
+    padding: 10px;
+    margin: 20px 20px;
+    width: 220px;
+    height: 224px;
+    background-color: #fff;
+    border-radius: 24px;
+    border: none;
+    cursor: pointer;
+
+}
+
+.funcgrp-usr:hover {
+    box-shadow: 12px 16px 28px -12px rgba(209, 209, 209, 0.79);
+    -webkit-box-shadow: 12px 16px 28px -12px rgba(209, 209, 209, 0.79);
+    -moz-box-shadow: 12px 16px 28px -12px rgba(209, 209, 209, 0.79);
+}
+
+.funcgrp-usr img {
+    margin: 30px;
+    width: 4.5rem;
+    height: 4.5rem;
+}
+
+.funcgrp-usr p {
+    font-family: "Roboto";
+    font-style: normal;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 21px;
+    text-align: center;
+    letter-spacing: 0.25px;
+    color: rgb(79, 79, 79);
+}
+
+.nav-link img {
+    width: 36px;
+    margin-right: 16px;
+}

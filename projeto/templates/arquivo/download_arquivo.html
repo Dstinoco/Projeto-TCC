@@ -1,0 +1,181 @@
+{% extends 'base/base.html' %}
+
+{% block conteudo %}
+
+{% set mensagens = get_flashed_messages(with_categories=true) %}
+<script src="{{ url_for('static', filename='js/select_form/form_select_download.js') }}"></script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var selectField = document.getElementById('select_download');
+        var downloadButton = document.getElementById('downloadButton');
+        var placeholderOption = document.createElement('option');
+
+        // Adiciona uma opção placeholder
+        //placeholderOption.text = 'Selecione o arquivo';
+        // placeholderOption.value = '';
+        //placeholderOption.disabled = true;
+        //placeholderOption.selected = true;
+        //selectField.add(placeholderOption, selectField[0]);
+
+        // Função para verificar o valor do select e habilitar/desabilitar o botão de download
+        function checkSelectField() {
+            if (selectField.value === '0') {
+                downloadButton.disabled = true;
+            } else {
+                downloadButton.disabled = false;
+            }
+        }
+
+        // Adiciona o evento change ao select
+        selectField.addEventListener('change', function () {
+            placeholderOption.disabled = true;
+            checkSelectField(); // Verifica o valor do select
+        });
+
+        // Inicializa o estado do botão com base no valor atual do select
+        checkSelectField();
+
+        downloadButton.addEventListener('click', function (event) {
+            event.preventDefault();
+
+            // Verifica se o campo select_download está preenchido e se o valor é diferente de '0'
+            if (selectField.value === '0' || !selectField.value) {
+                alert('Por favor, selecione um arquivo válido antes de iniciar o download.');
+                return;
+            }
+
+            var progressCircle = document.getElementById('progressCircle');
+            var circlePercentage = document.getElementById('circlePercentage');
+            var progressContainer = document.getElementById('progressContainer');
+            var successMessage = document.getElementById('successMessage');
+            var inProgressMessage = document.getElementById('inProgressMessage');
+
+            successMessage.style.display = 'none';
+            inProgressMessage.style.display = 'block';
+            progressContainer.style.display = 'block';
+            downloadButton.disabled = true;
+
+            const fileSize = 100; // Tamanho do arquivo em MB 
+            const downloadSpeed = 5; // Velocidade média de download em MB/s
+            const totalTime = fileSize / downloadSpeed; // Tempo total em segundos
+            const updateInterval = 100; // Intervalo de atualização em ms
+            const totalSteps = totalTime * (1000 / updateInterval); // Número total de etapas
+
+            let elapsedSteps = 0;
+            const interval = setInterval(function () {
+                elapsedSteps += 1;
+                const percentage = (elapsedSteps / totalSteps) * 100;
+                circlePercentage.innerHTML = Math.floor(percentage) + '%';
+                progressCircle.style.background = `conic-gradient(#4caf50 ${percentage}%, #e0e0e0 ${percentage}% 100%)`;
+
+                if (elapsedSteps >= totalSteps) {
+                    clearInterval(interval);
+                    downloadButton.disabled = false;
+                    progressContainer.style.display = 'none';
+                    inProgressMessage.style.display = 'none';
+                    successMessage.style.display = 'block';
+                    event.target.closest('form').submit();
+                }
+            }, updateInterval);
+        });
+    });
+</script>
+
+<style>
+    #progressContainer {
+        display: none;
+        position: relative;
+        width: 120px;
+        height: 120px;
+        margin: 0 auto;
+    }
+
+    #progressCircle {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        background: conic-gradient(#4caf50 0% 0%, #e0e0e0 0% 100%);
+        border-radius: 50%;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: background 0.3s ease;
+    }
+
+    #circleInner {
+        position: absolute;
+        width: 85%;
+        height: 85%;
+        background-color: white;
+        border-radius: 50%;
+        box-shadow: inset 0 4px 10px rgba(0, 0, 0, 0.1);
+        z-index: 1;
+    }
+
+    #circlePercentage {
+        position: absolute;
+        font-weight: bold;
+        font-size: 1.2em;
+        color: #4caf50;
+        z-index: 2;
+        transition: color 0.3s ease;
+    }
+
+    #downloadButton:disabled {
+        cursor: not-allowed;
+        background-color: #ccc;
+    }
+
+    #successMessage,
+    #inProgressMessage {
+        display: none;
+        font-weight: bold;
+        margin-top: 20px;
+    }
+
+    #successMessage {
+        color: green;
+    }
+
+    #inProgressMessage {
+        color: rgb(79, 79, 79);
+    }
+</style>
+
+<!-- Padrão -->
+<div class="container py-3 h-90">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="card shadow-2-strong" style="border-radius: 1rem;">
+            <div class="card-body py-3 text-center ">
+                {% include 'base/flash.html' %}
+                <div class="card-body py-5 text-center d-flex align-items-center">
+                    <a href="/index"><img src="{{ url_for('static', filename='img/back-return-svgrepo-com.svg') }}" alt="Logo" class="align-middle" /></a>
+                    <h2 class="title_cad fw-bold align-middle">Download de arquivo</h2>
+                </div>
+
+                <form action="" method="POST" enctype="multipart/form-data">
+                    {{ form.csrf_token }}
+                    <div class="form-outline mb-2">
+                        {{ form.select_download(class="form-control form-control-lg", id='select_download' ) }}
+                    </div>
+                    <div class="d-flex gap-2 py-2">
+                        {{ form.download(class="btn btn-success btn-block", id='downloadButton') }}
+                    </div>
+                </form>
+                <div id="inProgressMessage">Calculando o tamanho do arquivo...</div>
+                <div id="successMessage">Download será iniciado em breve!</div>
+                <div id="progressContainer" class="mt-3">
+                    <div id="progressCircle">
+                        <div id="circleInner"></div>
+                        <div id="circlePercentage">0%</div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

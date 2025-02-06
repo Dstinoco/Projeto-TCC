@@ -1,0 +1,30 @@
+<!-- Modal Deletar - inicio -->
+<div class="modal fade" id="deleteUserModal" tabindex="-1" aria-labelledby="deleteUserModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="deleteModalLabel">Deletar Cadastro</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="senhaForm" action="" method="POST">
+                   
+                    <input type="hidden" name="form" value="delete_form">
+  
+                     <P id="deleteMessage">
+                     </P>   
+  
+                    <input type="hidden" id="deleteID" name="deleteID">
+                    <input type="hidden" id="deleteName" name="deleteName">
+  
+                    
+            </div>
+            <div class="modal-footer d-flex justify-content-between">
+                <button type="button" class="btn btn-success" data-bs-dismiss="modal">Fechar</button>
+            <button type="submit" class="btn btn-danger" style="background-color: #dc3545 !important;" data-bs-dismiss="modal">Excluir</button>
+                </form>
+            </div>
+        </div>
+    </div>
+  </div>
+  <!-- Modal Deletar - Fim -->

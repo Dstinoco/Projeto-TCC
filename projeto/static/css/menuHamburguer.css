@@ -1,0 +1,134 @@
+/* Estilos básicos para a barra de cabeçalho */
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+}
+
+/* Estilo para o ícone de hambúrguer */
+.hamburger-menu {
+  display: none;
+  /* Esconde o ícone de hambúrguer por padrão */
+}
+
+.hamburger-icon {
+  font-size: 24px;
+  padding: 10px;
+  color: #333;
+  cursor: pointer;
+}
+
+/* Estilo para o menu lateral */
+.side-menu {
+  position: fixed;
+  left: -250px;
+  /* Inicialmente oculto fora da tela */
+  top: 0;
+  width: 250px;
+  height: 100%;
+  background-color: #399;
+  color: #fff;
+  transition: transform 0.3s ease;
+  z-index: 1000;
+  /* Assegura que o menu esteja sobre outros elementos */
+}
+
+.side-menu ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.side-menu ul li {
+  padding: 10px 20px;
+}
+
+.side-menu ul li a {
+  color: #fff;
+  text-decoration: none;
+}
+
+/*@media*/
+@media (max-width: 500px) {
+  .home-perfil {
+    display: none;
+    /* Oculta o menu original em telas pequenas */
+  }
+
+  .hamburger-menu {
+    display: block;
+    /* Mostra o ícone de hambúrguer */
+  }
+
+  .side-menu.active {
+    transform: translateX(250px);
+    /* Move o menu lateral para dentro da tela */
+  }
+
+  .msgm-usr {
+    display: none;
+  }
+
+  a {
+    display: none;
+  }
+
+  .func-usr,
+  .cad-usr,
+  .grp-usr,
+  .lay-usr,
+  .up-usr {
+    margin: 20px 20px;
+  }
+}
+
+/* Estilo para o menu lateral */
+.side-menu {
+  position: fixed;
+  left: -250px;
+  /* Inicialmente oculto fora da tela */
+  top: 0;
+  width: 250px;
+  height: 100%;
+  background-color: #006400;
+  color: #fff;
+  transition: transform 0.3s ease;
+  z-index: 1000;
+  /* Assegura que o menu esteja sobre outros elementos */
+  padding: 20px;
+  /* Adiciona algum espaçamento interno */
+}
+
+.side-menu a {
+  display: block;
+  /* Faz os links ocuparem a linha inteira */
+  color: #fff;
+  /* Define a cor do texto dos links */
+  text-decoration: none;
+  /* Remove o sublinhado dos links */
+  padding: 10px;
+  /* Adiciona algum espaçamento interno aos links */
+}
+
+.side-menu a:hover {
+  color: #A0C938;
+  /* Altera a cor de fundo quando o link é hover */
+}
+
+
+
+
+@media(max-width:1200px) {
+  .msgm-usr {
+    display: none;
+  }
+
+  .func-usr,
+  .cad-usr,
+  .grp-usr,
+  .lay-usr,
+  .up-usr {
+    margin: 20px 20px;
+  }
+}

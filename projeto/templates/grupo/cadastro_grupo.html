@@ -1,0 +1,159 @@
+{% extends 'base/base.html' %}
+{% block conteudo %}
+ 
+    {% set mensagens = get_flashed_messages(with_categories=true) %}
+
+    <script src="{{ url_for('static', filename='js/modal/alterar_grupo.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/modal/excluir_dinamico.js') }}"></script>
+    {% include 'base/modal_delete.html' %}
+
+
+    
+
+    <div class="container py-3 h-90">
+        <div class="card shadow-2-strong" style="border-radius: 1rem">
+            <div class="card-body py-3 text-center">
+                {% include 'base/flash.html' %}
+                <div class="card-body py-5 text-center d-flex align-items-center">
+                    <a href="/seguranca"><img src="{{ url_for('static', filename='img/back-return-svgrepo-com.svg') }}" alt="Logo" class="align-middle"/></a>
+                    <h2 class="title_cad fw-bold align-middle">Grupos</h2>
+                </div>
+            </div>
+        </div>
+        <div class="cadastro-container py-3">
+            <button class="cad_novo" id="openModalButton">
+                Cadastrar grupo
+            </button>
+        </div>
+    </div>
+
+    <div class="container py-2 hidden" id="div_tabela">
+        <table id="datatablesSimple">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nome</th>
+                    <th>Status</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tfoot>
+                <tr>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nome</th>
+                        <th>Status</th>
+                        <th></th>
+                    </tr>
+                </tr>
+            <tbody>
+                {% for ativo in grupos %}
+                    <tr>
+                        <td>{{ ativo.GRUPO_ID }}</td>
+                        <td>{{ ativo.NOME }}</td>
+                        <td>{{ ativo.STATUS }}</td>
+                        <td>
+                            <div class="d-flex justify-content-evenly">
+
+                            <a href="#" class='deleteUserModal' data-delete-id="{{ ativo.GRUPO_ID }}" data-delete-name="{{ ativo.NOME }}" data-bs-toggle="modal"
+                                data-bs-target="#deleteUserModal" id="icones">
+                                <i class="bi bi-trash-fill text-danger" title="Excluir"></i>
+                             </a>
+
+                        <a href="#" class='editGrupoModal' data-grupo_id="{{ ativo.GRUPO_ID }}" data-grupo_nome="{{ ativo.NOME }}" data-grupo_status="{{ ativo.STATUS }}" data-bs-toggle="modal" data-bs-target="#editGrupoModal" id="icones"><i class="bi bi-pencil-square text-black" title="Alterar Grupo"></i></a>                    
+                    </td>
+                        
+                    </div>
+                    
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Modal: Cria novo grupo -->
+    <div class="modal fade" id="criagrupoModal" tabindex="-1" aria-labelledby="criagrupoModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="criagrupoModalLabel">Criar Grupo</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    {% include 'base/flash.html' %}
+                    <form action="" method="POST">
+                        {{ cadastro.csrf_token }}
+                        <input type="hidden" name="form" value="grupo_form">
+                        <div class="form-outline mb-2">
+                            {{ cadastro.nome(class="form-control form-control-lg", placeholder='Nome') }}
+                        </div>
+                        <div class="d-flex form-switch form-switch my-4">
+                            {{ cadastro.status(class="form-check-input", id="status_modal", checked=True) }}
+                            <label class="ms-1 form-check-label" id="status_label">Ativo</label>
+                        </div>
+                        <div class="d-grid gap-2 py-2">
+                            {{ cadastro.submit(class="btn btn-success btn-lg btn-block") }}
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+   
+
+    <!-- Modal: Alterar grupo -->
+    <div class="modal fade" id="editGrupoModal" tabindex="-1" aria-labelledby="editGrupoModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="editGrupoModalLabel">Alterar Grupo</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+             
+              
+              <form action="" method="POST">
+                {{ update.csrf_token }}
+                <input type="hidden" name="form" value="alterar_grupo_form">
+              <div class="form-outline mb-2">
+                          
+                {{ update.nome(class="form-control form-control-lg", id='grupoNome') }}
+              </div>
+
+              <div class="d-flex form-switch form-switch my-4">
+                {{ update.status(class="form-check-input", id="status_modal", checked=True) }}
+                <label class="ms-1 form-check-label" id="status_label">Ativo</label>
+            </div>
+
+              <input type="hidden" id="grupoId" name="grupoId">
+            
+       
+            <div class="d-flex gap-2 py-2">
+              {{update.update(class="btn btn-success btn-lg btn-block")}}
+            </div>
+        </div>
+            </form>
+            </div>
+          </div>
+        </div>
+      </div>  
+
+
+
+
+</div>
+
+
+<script>
+document.getElementById('openModalButton').addEventListener('click', function() {
+            var myModal = new bootstrap.Modal(document.getElementById('criagrupoModal'), {
+                keyboard: false
+            });
+            myModal.show();
+            });
+
+</script>
+
+
+
+{% endblock %}

@@ -1,0 +1,52 @@
+.btnFilter {
+  background-color: #4682B4;
+  border-radius: 5px;
+
+}
+
+.btnFilter:hover {
+  background-color: #87CEEB;
+}
+
+.btnPessquisaDicionario {
+  background-color: #006631;
+  border-radius: 5px;
+  width: 100px;
+  font-size: 20px;
+
+}
+
+.btnPessquisaDicionario:hover {
+  background-color: #008000;
+}
+
+.bi-link-45deg {
+  color: blue;
+}
+
+.card-body a:hover {
+  color: blue;
+}
+
+.page-link {
+  color: #000;
+}
+
+.overflow {
+  overflow-x: scroll;
+  overflow-y: hidden;
+}
+
+/* Estilo para o checkbox quando estiver marcado */
+.form-check-input:checked {
+  background-color: #28a745;
+  /* Cor 'success' do Bootstrap */
+  border-color: #28a745;
+}
+
+/* Estilo para o checkbox quando não estiver marcado */
+.form-check-input:not(:checked) {
+  background-color: transparent;
+  border-color: #ccc;
+  /* Opcional: cor cinza para não marcado */
+}

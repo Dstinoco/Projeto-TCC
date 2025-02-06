@@ -1,0 +1,166 @@
+{% extends 'base/base.html' %}
+
+{% block conteudo %}
+
+    {% set mensagens = get_flashed_messages(with_categories=true) %}
+    <script src="{{ url_for('static', filename='js/modal/excluir_dinamico.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/select_form/form_select_dinamico.js') }}"></script>
+
+
+    <div class="container py-3 h-90">
+        <div class="card shadow-2-strong" style="border-radius: 1rem;">
+            <div class="card-body py-3 text-center ">
+
+                {% include 'base/flash.html' %}
+
+                <div class="card-body py-5 text-center d-flex align-items-center">
+                    <a href="/seguranca"><img src="{{ url_for('static', filename='img/back-return-svgrepo-com.svg') }}" alt="Logo" class="align-middle"/></a>
+                    <h2 class="title_cad fw-bold align-middle">Conexões</h2>
+                </div>
+            </div>
+        </div>
+        <div class="cadastro-container py-3">
+            <button class="cad_novo" id="openFuncionalidadeModalButton">
+              Cadastrar Conexão
+            </button>
+          </div>
+    </div>
+    <!-- Tabela conexões - INICIO -->
+    <div class="container py-2 hidden" id="div_tabela">
+        <table id="datatablesSimple">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nome</th>
+                    <th>Database</th>
+                    <th>Tipo</th>
+                    <th>Status</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for ativo in ativos %}
+                    <tr>
+                      
+                        <td>{{ ativo.CONEXAO_BANCO_ID }}</td>
+                        <td>{{ ativo.NOME }}</td>
+                        <td>{{ ativo.DB_CONEXAO }}</td>
+                        <td>{{ 'SQLSERVER' if ativo.TIPO_BANCO_ID == 1 else 'ORACLE'  }}</td>
+                        <td>{{ ativo.STATUS }}</td>
+                        <td>
+                          <div class="d-flex justify-content-evenly">
+
+                            <a href="#" class='deleteUserModal' data-delete-id="{{ ativo.CONEXAO_BANCO_ID }}" data-delete-name="{{ ativo.NOME }}" data-bs-toggle="modal"
+                                data-bs-target="#deleteUserModal" id="icones">
+                                <i class="bi bi-trash-fill text-danger" title="Excluir"></i>
+                             </a>
+
+                            <a href="/cadastro/funcionalidade/update/{{ ativo.CONEXAO_BANCO_ID }}" id="icones">
+                                <i class="bi bi-pencil-square text-black" title="Altera"></i>
+                            </a>
+                          </div>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+</div>
+<!-- Tabela conexões - FIM -->
+
+<!-- Modal: Cadastrar conexao novo - INICIO -->
+<div class="modal fade" id="funcionalidadeModal" tabindex="-1" aria-labelledby="funcionalidadeModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="funcionalidadeModalLabel">Cadastrar Funcionalidade</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form action="" method="POST">
+            {{ form.csrf_token }}
+            <input type="hidden" name="form" value="cadastro_form">
+            <div class="form-outline mb-2">
+              {{ form.nome(class="form-control form-control-lg", placeholder='Nome Conexão') }}
+            </div>
+            <div class="form-outline mb-2">
+              {{ form.tipo(class="form-control form-control-lg", placeholder='Tipo', id="form_select") }}
+            </div>
+            <div class="form-outline mb-2">
+              {{ form.database(class="form-control form-control-lg", placeholder='Database') }}
+            </div>
+            <div class="form-outline mb-2">
+                {{ form.host(class="form-control form-control-lg", placeholder='Host') }}
+              </div>
+              <div class="form-outline mb-2">
+                {{ form.porta(class="form-control form-control-lg", placeholder='Porta') }}
+              </div>
+              <div class="form-outline mb-2">
+                {{ form.usuario(class="form-control form-control-lg", placeholder='Usuário') }}
+              </div>
+              <div class="form-outline mb-2">
+                {{ form.senha(class="form-control form-control-lg", placeholder='Senha') }}
+              </div>
+              <div class="d-flex form-switch form-switch my-4">
+                {{ form.status(class="form-check-input", id="status_modal", checked=True) }}
+                <label class="ms-1 form-check-label" id="status_label">Ativo</label>
+            </div>
+            <div class="btn-cad-usr d-flex justify-content-between">
+              <div class="d-flex gap-2 py-2">
+                {{ form.submit(class="btn btn-success btn-lg btn-block") }}
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Modal: Cadastrar conexao novo - FIM -->
+
+
+ <!-- Modal Deletar - inicio -->
+ <div class="modal fade" id="deleteUserModal" tabindex="-1" aria-labelledby="deleteUserModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+      <div class="modal-content">
+          <div class="modal-header">
+              <h1 class="modal-title fs-5" id="deleteModalLabel">Deletar Grupo</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+              <form id="senhaForm" action="" method="POST">
+                 
+                  <input type="hidden" name="form" value="delete_form">
+
+                   <P id="deleteMessage">
+                   </P>   
+
+                  <input type="hidden" id="deleteID" name="deleteID">
+                  <input type="hidden" id="deleteName" name="deleteName">
+
+                  
+          </div>
+          <div class="modal-footer d-flex justify-content-between">
+              <button type="button" class="btn btn-success" data-bs-dismiss="modal">Fechar</button>
+          <button type="submit" class="btn btn-danger" style="background-color: #dc3545 !important;" data-bs-dismiss="modal">Excluir</button>
+              </form>
+          </div>
+      </div>
+  </div>
+</div>
+<!-- Modal Deletar - Fim -->
+
+
+
+
+</div></div><script>document.getElementById('addFuncionalidadeButton').addEventListener('click', function () {
+    $('#addFuncionalidadeModal').modal('show');
+});</script>
+<script>
+    document.getElementById('openFuncionalidadeModalButton').addEventListener('click', function() {
+      var funcionalidadeModal = new bootstrap.Modal(document.getElementById('funcionalidadeModal'), {
+        keyboard: false
+      });
+      funcionalidadeModal.show();
+    });
+  </script>{% endblock %}

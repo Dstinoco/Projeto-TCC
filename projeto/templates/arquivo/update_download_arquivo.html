@@ -1,0 +1,111 @@
+{% extends 'base/base.html' %}
+
+{% block conteudo %}
+  
+    {% set mensagens = get_flashed_messages(with_categories=true) %}
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            var selectField = document.getElementById("grupo");
+            var placeholderOption = document.createElement("option");
+            placeholderOption.text = "Selecione um grupo";
+            placeholderOption.value = "";
+            placeholderOption.disabled = true;
+            placeholderOption.selected = true;
+            selectField.add(placeholderOption, selectField[0]);
+    
+            selectField.addEventListener("change", function () {
+                placeholderOption.disabled = true;
+            });
+        });
+    </script>
+
+    <div class="container py-3 h-90">
+        <div class="row d-flex justify-content-center align-items-center ">
+            <div class="card shadow-2-strong" style="border-radius: 1rem;">
+                <div class="card-body py-3 text-center ">
+
+                    {% include 'base/flash.html' %}
+
+                    <div class="card-body py-5 text-center d-flex align-items-center">
+                        <a href="/cadastro/download_arquivo"><img src="{{ url_for('static', filename='img/back-return-svgrepo-com.svg') }}" alt="Logo" class="align-middle"/></a>
+                        <h2 class="title_cad fw-bold align-middle">Download de Arquivo</h2>
+                    </div>
+
+
+                    <form method="POST" action="">
+                        {{ form.csrf_token }}
+                        {{ form.hidden_tag() }}
+                        <input type="hidden" name="form" value="update_form"/>
+                        <div class="form-outline mb-2">
+                            {{ form.nome(class="form-control form-control-lg", placeholder="Nome do Arquivo", value=update.NOME) }}
+                        </div>
+
+                        <div class="form-outline mb-2">
+                            {{ form.query(class="form-control form-control-lg") }}
+                        </div>
+                        <div class="btn-cad-usr d-flex justify-content-between">
+                        <div class="d-grid gap-2 py-2">
+                            {{ form.update(class="btn btn-success btn-lg btn-block") }}
+                        </div>
+                        <div class="d-grid gap-2 py-2">
+                            <button type="button" class="btn btn-success btn-primary" id="addGrupoButton">Adicionar Grupo</button>
+                        </div>
+                    </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="container py-2 hidden" id="div_tabela">
+            <table id="datatablesSimple">
+                <thead>
+                    <tr>
+                        <th>Grupo</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody id="myTable1">
+                    {% for ativo in arquivo_grupo %}
+                        <tr>
+                            <td>{{ ativo.NOME_GRUPO }}</td>
+                            <td>
+                                <a href="/cadastro/download_arquivo_grupo/delete/{{ ativo.DOWNLOAD_ARQUIVO_GRUPO_ID }}">
+                                    <i class="bi bi-trash-fill  text-danger" title="Desvincular"></i>
+                                </a>
+                            </td>
+
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Modal: Vinculara grupo ao usuário - INICIO -->
+    <div class="modal fade" id="addGrupoModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Adicionar Grupo</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div
+                        class="form-outline mb-2">
+
+                        <form action="" method="POST">
+                        {{ form.csrf_token }}
+                        <input type="hidden" name="form" value="add_grupo_form"/>
+                        {{ form.grupo(class="form-control form-control-lg", id="grupo") }}
+                        {{form.vincular(class="btn btn-success mt-4")}}
+                    </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+     <!-- Modal: Vinculara grupo ao usuário - FIM -->
+    </div>
+    
+{% endblock %}

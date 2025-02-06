@@ -1,0 +1,78 @@
+#datatablesSimple {
+    
+    font-size: 14px;
+    width: 100%;
+    margin: 0 auto;
+    border-collapse: collapse;
+}
+
+#datatablesSimple thead {
+    font-size: 14px;
+    color: #fff;
+}
+
+#datatablesSimple th, #datatablesSimple td {
+    font-size: 14px;
+    text-align: left;
+}
+#datatablesSimple #icones{
+    display: flex;
+    justify-content: center;
+}
+
+#datatablesSimple tbody tr:hover {
+    background-color: #f1f1f1;
+}
+
+#datatablesSimple .bi-trash-fill {
+    color: #dc3545;
+}
+
+#datatablesSimple .bi-pencil-square {
+    color: #007bff;
+}
+
+#datatablesSimple .bi-key-fill {
+    color: #ffc107;
+}
+
+.hidden {
+    display: none;
+}
+
+
+/*novo cadastro de usuário*/
+
+.cad_novo{
+    -webkit-box-align: center;
+    font-family: "poppins";
+    font-weight: 600;
+    font-size: 16px;
+    align-items: center;
+    background: rgb(89, 124, 0);
+    border-radius: 48px;
+    border: none;
+    color: rgb(255, 255, 255);
+    display: flex;
+    gap: 8px;
+    -webkit-box-pack: center;
+    justify-content: center;
+    outline: none;
+    padding: 8px;
+    transition: all 0.4s ease 0s;
+    width: 166px;
+    height: 48px;
+}
+.title_cad{
+    font-family: Roboto;
+font-style: normal;
+font-weight: 700;
+font-size: 36px;
+text-align: center;
+color: rgb(79, 79, 79);
+margin: 10px auto;
+}
+
+select:invalid {
+    color: gray;
+  }

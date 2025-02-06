@@ -1,0 +1,311 @@
+{% extends 'base/base.html' %}
+
+{% block conteudo %}
+
+{% set mensagens = get_flashed_messages(with_categories=true) %}
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        var selectField = document.getElementById("grupo");
+        var placeholderOption = document.createElement("option");
+        placeholderOption.text = "Selecione um grupo";
+        placeholderOption.value = "";
+        placeholderOption.disabled = true;
+        placeholderOption.selected = true;
+        selectField.add(placeholderOption, selectField[0]);
+
+        selectField.addEventListener("change", function () {
+            placeholderOption.disabled = true;
+        });
+    });
+</script>
+<script src="{{ url_for('static', filename='js/modal/modal_senha.js') }}"></script>
+<script src="{{ url_for('static', filename='js/modal/excluir_dinamico.js') }}"></script>
+{% include 'base/modal_delete.html' %}
+
+
+<div class="container py-3 h-90">
+    <div class="card shadow-2-strong" style="border-radius: 1rem;">
+        <div class="card-body py-3 text-center ">
+            {% include 'base/flash.html' %}
+            <div class="card-body py-5 text-center d-flex align-items-center">
+                <a href="/seguranca"><img src="{{ url_for('static', filename='img/back-return-svgrepo-com.svg') }}"
+                        alt="Logo" class="align-middle" /></a>
+                <h2 class="title_cad fw-bold align-middle">Usuários</h2>
+            </div>
+        </div>
+    </div>
+    <div class="cadastro-container py-3">
+        <button class="cad_novo">
+            Cadastrar Usuário
+        </button>
+    </div>
+</div>
+<!-- Modal: Cadastrar novo usuario - INICIO -->
+<div class="modal fade" id="cadastroModal" tabindex="-1" aria-labelledby="cadastroModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="cadastroModalLabel">Cadastro de Usuário</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form action="" method="POST" id="cadastroForm">
+                    {{ form.csrf_token }}
+                    <input type="hidden" name="form" value="cadastro_form">
+                    <div class="form-outline mb-2">
+                        <label class="form-label" for="nome_modal">Nome</label>
+                        {{ form.nome(class="form-control form-control-lg", id="nome_modal", placeholder='Nome') }}
+                    </div>
+                    <div class="form-outline mb-2">
+                        <label class="form-label" for="email_modal">E-mail</label>
+                        {{ form.email(class="form-control form-control-lg", id="email_modal", placeholder='E-mail',
+                        type='email') }}
+                        <div id="emailFeedback" class="invalid-feedback"></div>
+                    </div>
+
+                    <div class="form-outline mb-2">
+                        <label class="form-label" for="grupo">Grupo</label>
+                        {{ form.grupo(class="form-control form-control-lg", id="grupo") }}
+                        <div id="grupoFeedback" class="invalid-feedback"></div>
+                    </div>
+                    <div class="d-flex form-switch form-switch my-4">
+                        {{ form.status(class="form-check-input", id="status_modal", checked=True) }}
+                        <label class="ms-1 form-check-label" id="status_label">Ativo</label>
+                    </div>
+                    <div class="d-grid gap-2">
+                        {{ form.submit(class="btn btn-success btn-block") }}
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Modal: Cadastrar novo usuario - FIM -->
+<!-- Table usuários - inicio -->
+<div class="container py-2 hidden" id="div_tabela">
+    <table id="datatablesSimple">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nome</th>
+                <th>E-mail</th>
+                <th>Status</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tfoot>
+            <tr>
+                <th>ID</th>
+                <th>Nome</th>
+                <th>E-mail</th>
+                <th>Status</th>
+                <th></th>
+            </tr>
+        </tfoot>
+        <tbody>
+            {% for ativo in usuario_ativo %}
+            <tr>
+                <td>{{ ativo.USUARIO_ID }}</td>
+                <td>{{ ativo.NOME }}</td>
+                <td>{{ ativo.EMAIL }}</td>
+                <td>{{ "Ativo" if ativo.STATUS == "A" else "Inativo" }}</td>
+                <td>
+                    <div class="d-flex justify-content-evenly">
+                        
+                        <a href="#" class='deleteUserModal' data-delete-id="{{ ativo.USUARIO_ID }}" data-delete-name="{{ ativo.NOME }}" data-bs-toggle="modal"
+                            data-bs-target="#deleteUserModal" id="icones">
+                            <i class="bi bi-trash-fill text-danger" title="Excluir"></i>
+                        </a>
+                        
+                        <a href="/cadastro/usuario/update/{{ ativo.USUARIO_ID }}" id="icones">
+                            <i class="bi bi-pencil-square text-black" title="Alterar Cadastro"></i>
+                        </a>
+                        
+                        <a href="#" class='editUserModal' data-user-id="{{ ativo.USUARIO_ID }}" data-user-name="{{ ativo.NOME }}" data-bs-toggle="modal"
+                            data-bs-target="#editUserModal" id="icones">
+                            <i class="bi bi-key-fill text-warning" title="Redefinir Senha"></i>
+                        </a>
+                    </div>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+</div>
+<!-- div-->
+
+
+<!-- Modal Redefinir senha - inicio -->
+<div class="modal fade" id="editUserModal" tabindex="-1" aria-labelledby="editUserModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="editUserModalLabel">Alterar Senha</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="senhaForm" action="" method="POST">
+                   
+                    <input type="hidden" name="form" value="senha_form">
+
+                     <P id="userMessage">
+                     </P>   
+
+                    <input type="hidden" id="userId" name="userId">
+                    <input type="hidden" id="userName" name="userName">
+            </div>
+            <div class="modal-footer d-flex justify-content-between">
+                <button type="button" class="btn btn-success" data-bs-dismiss="modal">Fechar</button>
+                <button type="submit" class="btn btn-success" data-bs-dismiss="modal">Enviar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal Redefinir senha - Fim -->
+
+
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js"
+    crossorigin="anonymous"></script>
+<script src="{{ url_for('static', filename='js/toggleDivs.js') }}"></script>
+<script src="{{ url_for('static', filename='js/modal_cadastro_novo.js') }}"></script>
+
+
+<!-- NOVO USUARIO  script - INICIO  -- validação  -->
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const cadastroForm = document.getElementById('cadastroForm');
+        const emailField = document.getElementById('email_modal');
+        const passwordField = document.getElementById('password_modal');
+        const confirmPasswordField = document.getElementById('confirmar_password_modal');
+        const grupoField = document.getElementById('grupo');
+        const emailFeedback = document.getElementById('emailFeedback');
+        const passwordFeedback1 = document.getElementById('passwordFeedback1');
+        const confirmPasswordFeedback1 = document.getElementById('confirmPasswordFeedback1');
+        const grupoFeedback = document.getElementById('grupoFeedback');
+
+        cadastroForm.addEventListener('submit', function (event) {
+            let isValid = true;
+
+            // Email validation
+            const emailPattern = /^[a-zA-Z0-9._%+-]+@medsenior.com.br$/;
+            if (!emailPattern.test(emailField.value)) {
+                emailField.classList.add('is-invalid');
+                emailFeedback.textContent = 'E-mail inválido. Use um e-mail @medsenior.com.br';
+                isValid = false;
+            } else {
+                emailField.classList.remove('is-invalid');
+                emailField.classList.add('is-valid');
+                emailFeedback.textContent = 'E-mail válido.';
+            }
+
+            // Password validation
+            if (passwordField.value.length < 8) {
+                passwordField.classList.add('is-invalid');
+                passwordFeedback1.textContent = 'A senha precisa ter 8 ou mais caracteres.';
+                isValid = false;
+            } else {
+                passwordField.classList.remove('is-invalid');
+                passwordField.classList.add('is-valid');
+                passwordFeedback1.textContent = '';
+            }
+
+            // Confirm password validation
+            if (passwordField.value !== confirmPasswordField.value) {
+                confirmPasswordField.classList.add('is-invalid');
+                confirmPasswordFeedback1.textContent = 'As senhas não coincidem.';
+                isValid = false;
+            } else {
+                confirmPasswordField.classList.remove('is-invalid');
+                confirmPasswordField.classList.add('is-valid');
+                confirmPasswordFeedback1.textContent = '';
+            }
+
+            // Grupo validation
+            if (grupoField.value === "") {
+                grupoField.classList.add('is-invalid');
+                grupoFeedback.textContent = 'Por favor, selecione um grupo.';
+                isValid = false;
+            } else {
+                grupoField.classList.remove('is-invalid');
+                grupoField.classList.add('is-valid');
+                grupoFeedback.textContent = '';
+            }
+
+            if (!isValid) {
+                event.preventDefault();
+            }
+        });
+    });
+
+</script>
+
+<!-- NOVO USUARIO  script - FIM  -- validação  -->
+
+
+<!-- Redefinir senha script - INICIO -- validação  -->
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const senhaField = document.getElementById('senha');
+        const confirmarSenhaField = document.getElementById('confirmar_senha');
+        const passwordFeedback = document.getElementById('passwordFeedback');
+        const confirmPasswordFeedback = document.getElementById('confirmPasswordFeedback');
+        const senhaForm = document.getElementById('senhaForm');
+
+        senhaForm.addEventListener('submit', function (event) {
+            let isValid = true;
+
+            // Password length validation (minimum 8 characters)
+            if (senhaField.value.length < 8) {
+                senhaField.classList.add('is-invalid');
+                passwordFeedback.textContent = 'Senha precisa ter 8 ou mais caracteres.';
+                isValid = false;
+            } else {
+                senhaField.classList.remove('is-invalid');
+                senhaField.classList.add('is-valid');
+                passwordFeedback.textContent = '';
+            }
+
+            // Password match validation (confirm password)
+            if (senhaField.value !== confirmarSenhaField.value) {
+                confirmarSenhaField.classList.add('is-invalid');
+                confirmPasswordFeedback.textContent = 'As senhas não coincidem.';
+                isValid = false;
+            } else {
+                confirmarSenhaField.classList.remove('is-invalid');
+                confirmarSenhaField.classList.add('is-valid');
+                confirmPasswordFeedback.textContent = '';
+            }
+
+            // Prevent form submission if not valid
+            if (!isValid) {
+                event.preventDefault();
+            }
+        });
+
+        // Confirm password validation on input change
+        confirmarSenhaField.addEventListener('input', function () {
+            if (senhaField.value === confirmarSenhaField.value) {
+                confirmarSenhaField.classList.remove('is-invalid');
+                confirmarSenhaField.classList.add('is-valid');
+                confirmPasswordFeedback.textContent = '';
+            } else {
+                confirmarSenhaField.classList.add('is-invalid');
+                confirmPasswordFeedback.textContent = 'As senhas não coincidem.';
+            }
+        });
+    });
+</script>
+<!-- Redefinir senha script - INICIO -- validação  -->
+
+
+
+{% endblock %}

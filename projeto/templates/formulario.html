@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="../../static/css/style.css">
+    <link rel="stylesheet" href="../../static/css/login.css">
+    <link rel="icon" type="image/x-icon" href="../../static/img/logo-home.png" />
+    <title>Dados Medsênior</title>
+</head>
+<!-- Button atualizar style-->
+<style>
+    .btn {
+
+        -webkit-box-align: center;
+        font-family: poppins;
+        font-weight: 600;
+        font-size: 16px;
+        margin: auto;
+        align-items: center;
+        color: rgb(255, 255, 255);
+        display: flex;
+        -webkit-box-pack: center;
+        justify-content: center;
+        width: 266px;
+        height: 48px;
+        background: rgb(89, 124, 0);
+        border-radius: 48px;
+        border-width: initial;
+        border-style: none;
+        border-color: initial;
+        border-image: initial;
+        gap: 8px;
+        outline: none;
+        padding: 8px;
+        transition: all 0.4s ease 0s;
+    }
+
+    .btn-lg,
+    .btn-group-lg>.btn {
+        --bs-btn-padding-y: 0.5rem;
+        --bs-btn-padding-x: 1rem;
+        --bs-btn-font-size: 1.25rem;
+        --bs-btn-border-radius: 0.5rem;
+    }
+
+    .btn-success {
+        --bs-btn-color: #fff;
+        --bs-btn-bg: #198754;
+        --bs-btn-border-color: #198754;
+        --bs-btn-hover-color: #fff;
+        --bs-btn-hover-bg: #157347;
+        --bs-btn-hover-border-color: #146c43;
+        --bs-btn-focus-shadow-rgb: 60, 153, 110;
+        --bs-btn-active-color: #fff;
+        --bs-btn-active-bg: #146c43;
+        --bs-btn-active-border-color: #13653f;
+        --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+        --bs-btn-disabled-color: #fff;
+        --bs-btn-disabled-bg: #198754;
+        --bs-btn-disabled-border-color: #198754;
+    }
+</style>
+
+<body class="login">
+    {% set mensagens = get_flashed_messages(with_categories=true) %}
+
+
+
+
+    <div class="container content py-3 vh-100">
+        <div class="row d-flex justify-content-center align-items-center mt-20">
+            <div class="col-7 card shadow-2-strong" style="border-radius: 1rem;">
+                <div class="card-body py-3 text-center ">
+
+                    {% include 'base/flash.html' %}
+                    <!-- Form perfil -->
+                    <div class="card-body py-5 text-center">
+
+
+                        <h2 class="title_cad text-center">Atualização Cadastral Prestador</h2>
+                    </div>
+
+                    <form class="needs-validation" action="" method="POST">
+
+                        <input type="hidden" name="form" value="perfil_form" />
+
+                        <div class="form-outline mb-2">
+                            <input class="form-control form-control-lg" type="text" name="cnpj" value="{{ cnpj }}" placeholder="CNPJ">
+                        </div>
+
+                        <div class="form-outline mb-2">
+                            <input class="form-control form-control-lg" type="text" name="razao" value="{{ nome }}" placeholder="Razão Social">
+                            <div id="emailFeedback" class="invalid-feedback"></div>
+                        </div>
+
+                        <div class="card-body py-4 text-center">
+
+                            <h4 class="title_cad text-center">Informações da Testemunha</h4>
+                        </div>
+
+
+
+                        <div class="form-outline mb-2">
+                            <input class="form-control form-control-lg" type="text" name="nome" id="nome" value="" placeholder="Nome Completo" required>
+                            <div id="emailFeedback" class="invalid-feedback"></div>
+                        </div>
+
+                        <div class="form-outline mb-2">
+                            <input class="form-control form-control-lg" type="text" name="email" value="" placeholder="Email" required>
+                            <div id="emailFeedback" class="invalid-feedback"></div>
+                        </div>
+
+                        <div class="form-outline mb-2">
+                            <input class="form-control form-control-lg" type="text" name="cpf" value="" placeholder="CPF" required>
+                            <div id="emailFeedback" class="invalid-feedback"></div>
+                        </div>
+
+                        <div class="form-outline mb-2">
+                            <input class="form-control form-control-lg" type="text" name="nascimento" placeholder="Data de Nascimento: 01/12/1900" required>
+                            <div id="emailFeedback" class="invalid-feedback"></div>
+                        </div>
+
+
+                        <div class="form-outline mb-3">
+                            <input class="form-control form-control-lg" type="text" name="telefone" value="" placeholder="Telefone" required>
+                            <div id="emailFeedback" class="invalid-feedback"></div>
+                        </div>
+
+
+                        <div class="card-body py-4 text-center">
+
+                            <h4 class="title_cad text-center">Informações do Representante Legal</h4>
+                        </div>
+
+
+                        <div class="form-outline mb-2">
+                            <input class="form-control form-control-lg" type="text" name="nome_representante" id="nome" value="" placeholder="Nome Completo" required>
+                            <div id="emailFeedback" class="invalid-feedback"></div>
+                        </div>
+
+                        <div class="form-outline mb-2">
+                            <input class="form-control form-control-lg" type="text" name="civil_representante" value="" placeholder="Estado Civil" required>
+                            <div id="emailFeedback" class="invalid-feedback"></div>
+                        </div>
+
+                        <div class="form-outline mb-2">
+                            <input class="form-control form-control-lg" type="text" name="profissao_representante" value="" placeholder="Profissão" required>
+                            <div id="emailFeedback" class="invalid-feedback"></div>
+                        </div>
+
+                        <div class="form-outline mb-2">
+                            <input class="form-control form-control-lg" type="text" name="funcao_representante" value="" placeholder="Função Administrativa" required>
+                            <div id="emailFeedback" class="invalid-feedback"></div>
+                        </div>
+
+                        <div class="form-outline mb-2">
+                            <input class="form-control form-control-lg" type="text" name="nacionalidade_representante" placeholder="Nacionalidade" required>
+                            <div id="emailFeedback" class="invalid-feedback"></div>
+                        </div>
+
+
+                        <div class="form-outline mb-3">
+                            <input class="form-control form-control-lg" type="text" name="rg_representante" value="" placeholder="RG" required>
+                            <div id="emailFeedback" class="invalid-feedback"></div>
+                        </div>
+
+                        <div class="form-outline mb-3">
+                            <input class="form-control form-control-lg" type="text" name="orgao_representante" value="" placeholder="Orgão Emissor RG" required>
+                            <div id="emailFeedback" class="invalid-feedback"></div>
+                        </div>
+
+                        <div class="form-outline mb-3">
+                            <input class="form-control form-control-lg" type="text" name="cpf_representante" value="" placeholder="CPF" required>
+                            <div id="emailFeedback" class="invalid-feedback"></div>
+                        </div>
+
+
+
+
+
+
+                        <div class=" form-outline justify-content-center">
+                            <button type="submit" class="btn btn-success btn-lg btn-block form-control"> Atualizar </button>
+                        </div>
+
+                    </form>
+
+
+                </div>
+            </div>
+
+
+
+
+
+
+
+</body>
+<script>
+    // Example starter JavaScript for disabling form submissions if there are invalid fields
+    (function () {
+        'use strict'
+
+        // Fetch all the forms we want to apply custom Bootstrap validation styles to
+        var forms = document.querySelectorAll('.needs-validation')
+
+        // Loop over them and prevent submission
+        Array.prototype.slice.call(forms)
+            .forEach(function (form) {
+                form.addEventListener('submit', function (event) {
+                    if (!form.checkValidity()) {
+                        event.preventDefault()
+                        event.stopPropagation()
+                    }
+
+                    form.classList.add('was-validated')
+                }, false)
+            })
+    })()
+</script>
+
+</html>

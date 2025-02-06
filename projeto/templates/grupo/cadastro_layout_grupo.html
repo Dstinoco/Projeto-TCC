@@ -1,0 +1,117 @@
+{% extends 'base/base.html' %}
+
+{% block conteudo %}
+
+    {% set mensagens = get_flashed_messages(with_categories=true) %}
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var selectField = document.getElementById('usuario');
+            var placeholderOption = document.createElement('option');
+            placeholderOption.text = 'Selecione o layout';
+            placeholderOption.value = '';
+            placeholderOption.disabled = true;
+            placeholderOption.selected = true;
+            selectField.add(placeholderOption, selectField[0]);
+
+            selectField.addEventListener('change', function () {
+                placeholderOption.disabled = true;
+            });
+        });
+    </script>
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var selectField = document.getElementById('grupo');
+            var placeholderOption = document.createElement('option');
+            placeholderOption.text = 'Selecione um grupo';
+            placeholderOption.value = '';
+            placeholderOption.disabled = true;
+            placeholderOption.selected = true;
+            selectField.add(placeholderOption, selectField[0]);
+
+            selectField.addEventListener('change', function () {
+                placeholderOption.disabled = true;
+            });
+        });
+    </script>
+
+
+    <div class="container py-3 h-90">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="card shadow-2-strong" style="border-radius: 1rem;">
+                <div class="card-body py-3 text-center ">
+                    {% include 'base/flash.html' %}
+                    <div class="card-body py-5 text-center d-flex align-items-center"></div>
+
+                    <h2 class="mb-5 fw-bold">
+                        <i class="bi bi-layout-text-window-reverse"></i>
+                        Layout x Grupo</h2>
+
+                    <form action="" method="POST">
+
+                        {{ form.csrf_token }}
+
+                        <div class="form-outline mb-2">
+
+                            {{ form.layout(class="form-control form-control-lg", id='usuario') }}
+                        </div>
+
+                        <div class="form-outline mb-2">
+
+                            {{ form.grupo(class="form-control form-control-lg", id='grupo') }}
+                        </div>
+
+                        <div class="d-grid gap-2">
+                            {{ form.submit(class="btn btn-success btn-lg btn-block") }}
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+
+
+   
+            <!-- div-->
+            <div class="container py-2 hidden" id="div_tabela">
+                <!-- Novo Table-->
+                <table id="datatablesSimple">
+                    <thead>
+                        <tr>
+                            <th>Layout</th>
+                            <th>Grupo</th>
+                            <th></th>
+                        </tr>
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr>
+                        <th>Layout</th>
+                        <th>Grupo</th>
+                        <th></th>
+                    </tr>
+                </tfoot>
+                <tbody>
+                    {% for ativo in layout_grupo %}
+                        <tr>
+                            <td>{{ ativo.NOME_ARQUIVO }}</td>
+                            <td>{{ ativo.GRUPO }}</td>
+                            <td>
+                            </div class="d-flex justify-content-evenly">
+                                <a href="/cadastro/layout_grupo/delete/{{ ativo.LAYOUT_GRUPO_ID }}" id="icones">
+                                    <i class="bi bi-link-45deg text-danger" title="Desvincular"></i>
+                                </a>
+                            </div>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+
+
+</div>{% endblock %}

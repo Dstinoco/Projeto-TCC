@@ -1,0 +1,8 @@
+
+venv/
+.gitignore
+Dockerfile
+.env
+Cria_grupo.py
+criar_user.py
+readme.md

@@ -1,0 +1,46 @@
+{% extends 'base/base.html' %}
+
+{% block conteudo %}
+
+
+{% set mensagens = get_flashed_messages(with_categories=true) %}
+
+
+<div class="container content">
+    <div class="row">
+        <div class="msgm-usr col-10 text-center">
+            <a href="/index"><img src="../static/img/back-return-svgrepo-com.svg"></a>
+        </div>
+    </div>
+    <div class="row container-usr">
+
+
+        {% if 1 in permissoes %}
+        <div class="lay-usr col-12 col-sm-6 col-md-4 col-lg-3" onclick="window.location.href='{{ url_for('cadastro_arquivo') }}'">
+            <img src="../static/img/upload-photo-svgrepo-com.svg" alt="cadastro de layout">
+            <p>Upload Arquivos</p>
+        </div>
+        {% endif %}
+
+
+        {% if 1 in permissoes %}
+        <div class="func-usr col-12 col-sm-6 col-md-4 col-lg-3" onclick="window.location.href='{{ url_for('cadastrar_download_arquivo') }}'">
+            <img src="../static/img/download-photo-svgrepo-com.svg" alt="cadastro Download Arquivo">
+            <p>Download Arquivos</p>
+            </a>
+        </div>
+        {% endif %}
+
+
+
+    </div>
+
+
+    {% endblock %}
+    <!--
+            <div class="down-usr col-12 col-sm-6 col-md-4 col-lg-3" onclick="window.location.href='{{ url_for('download_arquivo') }}'">
+                <img src="../static/img/upload-svgrepo-com.svg" alt="download de arquivo">
+                    <p>Download de Arquivos</p>
+                </a>
+            </div>
+            -->

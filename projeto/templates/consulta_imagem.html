@@ -1,0 +1,93 @@
+{% extends 'base/base.html' %}
+
+
+{% block conteudo %}
+
+{% set mensagens = get_flashed_messages(with_categories=true) %}
+
+</script>
+<script>
+    function copyToClipboard() {
+        var text = document.getElementById("senhaPortal").innerText;
+        navigator.clipboard.writeText(text).then(function () {
+            var copyButton = document.getElementById("copyButton");
+            copyButton.innerHTML = "Copiado";
+            copyButton.style.color = "forestgreen";
+
+            // Revert the button back to the copy icon after 2 seconds
+            setTimeout(function () {
+                copyButton.innerHTML = '<i class="fa-solid fa-copy"></i>';
+                copyButton.style.color = "gray";
+            }, 2000);
+        }, function () {
+            alert("Falha ao copiar.");
+        });
+    }
+
+</script>
+
+<script>
+    function copyToClipboard2() {
+        var text = document.getElementById("senhaPortal2").innerText;
+        navigator.clipboard.writeText(text).then(function () {
+            var copyButton2 = document.getElementById("copyButton2");
+            copyButton2.innerHTML = "Copiado";
+            copyButton2.style.color = "forestgreen";
+
+            // Revert the button back to the copy icon after 2 seconds
+            setTimeout(function () {
+                copyButton2.innerHTML = '<i class="fa-solid fa-copy"></i>';
+                copyButton2.style.color = "gray";
+            }, 2000);
+        }, function () {
+            alert("Falha ao copiar.");
+        });
+    }
+</script>
+
+<div class="container py-3 h-90">
+    <div class="row d-flex justify-content-center align-items-center ">
+        <div class="card shadow-2-strong" style="border-radius: 1rem;">
+            <div class="card-body py-3 text-center ">
+
+                {% include 'base/flash.html' %}
+                <!-- Form perfil -->
+                <div class="card-body py-5 text-center d-flex align-items-center">
+                    <a href="/index"><img src="{{ url_for('static', filename='img/back-return-svgrepo-com.svg') }}" alt="Logo" class="align-middle" /></a>
+                    <h2 class="title_cad fw-bold align-middle">Consultar Senha de Acesso ao Portal</h2>
+                </div>
+
+                <form action="" method="POST">
+                    <input type="hidden" name="form" value="perfil_form" />
+
+                    <div class="form-outline mb-2">
+                        <input class="form-control form-control-lg" name="cpf" type="text" placeholder="CPF  (Ex.: 999999999)">
+                    </div>
+
+                    <div class="btn-cad-usr d-flex justify-content-between">
+                        <div class="d-flex gap-2 py-2">
+                            <button type="imput" class="btn btn-success btn-lg btn-block">Pesquisar</button>
+                        </div>
+
+                </form>
+
+
+            </div>
+        </div>
+
+        {% if lista_dados_consulta %}
+
+        <div class="cardSenha" style="text-align: center; background-color: #f2f2f2; margin: 10px auto; border-radius: 15px; padding: 30px;">
+            <p style="font-weight: 700;">E-mail:</p>
+            <p style="font-style: italic;">{{ lista_dados_consulta[1] }}</p>
+            <p style="font-weight: 700;">CPF do beneficiário:</p>
+            <p id="senhaPortal2" style="font-style: italic;">{{ lista_dados_consulta[0] }}<button id="copyButton2" onclick="copyToClipboard2()" style="margin-top: 10px; padding: 5px 10px; font-size: 14px; color: gray; border: none; border-radius: 5px;"><i class="fa-solid fa-copy"></i></button></p>
+
+            <p style="font-weight: 700;">Senha de acesso ao portal:</p>
+            <p id="senhaPortal" style="font-style: italic;">{{ lista_dados_consulta[2] if lista_dados_consulta[2] else 'Senha não gerada'  }}<button id="copyButton" onclick="copyToClipboard()" style="margin-top: 10px; padding: 5px 10px; font-size: 14px; color: gray; border: none; border-radius: 5px;"><i class="fa-solid fa-copy"></i></button></p>
+
+        </div>
+        {% endif %}
+
+
+        {% endblock %}

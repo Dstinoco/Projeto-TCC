@@ -1,0 +1,164 @@
+{% extends 'base/base.html' %}
+{% block conteudo %}
+  
+    {% set mensagens = get_flashed_messages(with_categories=true) %}
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        var selectField = document.getElementById("grupo");
+        var placeholderOption = document.createElement("option");
+        placeholderOption.text = "Selecione um grupo";
+        placeholderOption.value = "";
+        placeholderOption.disabled = true;
+        placeholderOption.selected = true;
+        selectField.add(placeholderOption, selectField[0]);
+
+        selectField.addEventListener("change", function () {
+            placeholderOption.disabled = true;
+        });
+    });
+</script>
+
+    <div class="container py-3 h-90">
+        <div class="row d-flex justify-content-center align-items-center ">
+            <div class="card shadow-2-strong" style="border-radius: 1rem;">
+                <div class="card-body py-3 text-center ">
+                    {% include 'base/flash.html' %}
+
+                    <div class="card-body py-5 text-center d-flex align-items-center">
+                        <a href="/cadastro/grupo"><img src="{{ url_for('static', filename='img/back-return-svgrepo-com.svg') }}" alt="Logo" class="align-middle"/></a>
+                        <h2 class="title_cad fw-bold align-middle">{{ grupo.NOME }}</h2>
+                    </div>
+
+
+                </div>
+            </div>
+
+<div class="row mt-3">
+
+
+            <!-- Tabela de usuarios do GRUPO - INICIO -->
+
+            <div class="col-6 card">
+                <h2 class="text-center mt-2">Usuários</h2>
+                <div class="card-body" >
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Nome</th>
+                            <th></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                            {% for usuario in usuarios %}
+                                <tr>
+                                    <td>{{ usuario.USUARIO_ID }}</td>
+                                    <td>{{ usuario.NOME }}</td>
+                                    <td></td>
+                                </tr>
+                            {% endfor %}
+                        
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Tabela de usuarios do GRUPO - FIM -->
+
+
+            <!-- Tabela de funcionalidade do GRUPO - INICIO -->
+
+            <div class="col-6 card">
+                <h2 class="text-center mt-2">Funcionalidades</h2>
+                <div class="card-body" >
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Nome</th>
+                            <th></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                            {% for funcionalidade in funcionalidades %}
+                                <tr>
+                                    <td>{{ funcionalidade.FUNCIONALIDADE_ID }}</td>
+                                    <td>{{ funcionalidade.NOME }}</td>
+                                    <td></td>
+                                </tr>
+                            {% endfor %}
+                        
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Tabela de funcionalidade do GRUPO - FIM -->
+           
+</div>
+
+<div class="row mt-3">
+
+
+    <!-- Tabela de usuarios do GRUPO - INICIO -->
+
+    <div class="col-6 card">
+        <h2 class="text-center mt-2">Uploads</h2>
+        <div class="card-body" >
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nome</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                    {% for upload in uploads %}
+                        <tr>
+                            <td>{{ upload.LAYOUT_ARQUIVO_ID }}</td>
+                            <td>{{ upload.NOME }}</td>
+                            <td></td>
+                        </tr>
+                    {% endfor %}
+                
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Tabela de usuarios do GRUPO - FIM -->
+
+
+    <!-- Tabela de funcionalidade do GRUPO - INICIO -->
+
+    <div class="col-6 card">
+        <h2 class="text-center mt-2">Downloads</h2>
+        <div class="card-body" >
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nome</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                    {% for download in downloads %}
+                        <tr>
+                            <td>{{ download.DOWNLOAD_ID }}</td>
+                            <td>{{ download.NOME }}</td>
+                            <td></td>
+                        </tr>
+                    {% endfor %}
+                
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Tabela de funcionalidade do GRUPO - FIM -->
+   
+</div>
+       
+        {% endblock %}

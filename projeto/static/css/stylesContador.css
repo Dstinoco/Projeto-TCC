@@ -1,0 +1,99 @@
+@import url(https://fonts.googleapis.com/css?family=Oswald);
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100..900&display=swap');
+
+body {
+  background-image: url(../img/contador/fundo2_med.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  margin: 0;
+  padding: 0;
+  position: relative;
+  overflow: hidden;
+}
+
+#progress-message {
+  color: #fff;
+  font-size: 3.5rem;
+  text-align: center;
+  margin: 60px 100px 0 100px;
+  font-family: "Roboto Slab", serif;
+  animation: none; /* Inicialmente sem animação */
+}
+
+.message-gold {
+  color: gold;
+  animation: bounce 1s infinite; /* Animação de pulo */
+  text-shadow: 0 0 10px #ffdf00, 0 0 20px #ffd700;
+}
+
+.flip-counter {
+  display: flex;
+  justify-content: center;
+  font-family: "Oswald", sans-serif;
+  margin-bottom: 10px; /* Ajuste essa margem conforme necessário */
+  position: fixed; /* Fixa no viewport; mude para 'absolute' se preferir relativo ao contêiner pai */
+  bottom: 48%; /* Define a distância do fundo da página */
+  left: 50%; /* Centraliza horizontalmente */
+  transform: translateX(-50%); /* Compensa o deslocamento horizontal da centralização */
+  z-index: 10;
+}
+
+.digit {
+  position: relative;
+  width: 220px;
+  height: 250px;
+  margin: 0 5px;
+  background: rgba(15, 128, 58, 0.3);
+  color: #fff;
+  font-size: 9.5rem;
+  line-height: 250px;
+  text-align: center;
+  border-radius: 10px;
+  overflow: hidden;
+  perspective: 500px;
+  backdrop-filter: blur(10px);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  animation: none; /* Inicialmente sem animação */
+}
+
+.digit.gold {
+  color: gold;
+  animation: bounce 1s infinite; /* Animação de pulo */
+  /*text-shadow: 0 0 10px #ffdf00, 0 0 20px #ffd700;*/
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+#custom_canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw; /* Largura total da viewport */
+  height: 100%; /* Altura total da viewport */
+  pointer-events: none; /* Permite interação com elementos abaixo */
+  z-index: 99; /* Garante que o canvas esteja atrás do contador */
+}
+
+.digit.flip {
+  animation: flip 0.8s forwards;
+}
+
+@keyframes flip {
+  0% {
+    transform: rotateX(0);
+  }
+  50% {
+    transform: rotateX(-90deg);
+  }
+  100% {
+    transform: rotateX(0);
+  }
+}

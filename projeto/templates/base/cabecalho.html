@@ -1,0 +1,52 @@
+<header>
+    <div class="header-container">
+        <div class="home-logo">
+            <a href="{{ url_for('index') }}">
+                <!--<img src="{{ url_for('static', filename='img/logo-home.png' ) }} " style="width: 50px" alt="Logo" />-->
+                <span>Portal de Dados</span>
+            </a>
+        </div>
+        <div class="home-perfil">
+            <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <img src="{{ url_for('static', filename='img/gear-svgrepo-com.svg') }}" />Olá, {{ g.primeiro_nome }}!
+                    </a>
+                    <ul class="dropdown-menu my-1 mx-1" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="/perfil">Editar Perfil</a></li>
+                        <li>
+                            <!--<hr class="dropdown-divider" /> -->
+                        </li>
+                        <li><a class="dropdown-item" href="{{ url_for('sair') }}">Sair</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <!-- Botão de Hambúrguer -->
+        <div class="hamburger-menu">
+            <div class="hamburger-icon">&#9776;</div>
+        </div>
+    </div>
+    <!-- Menu Lateral -->
+    <div class="side-menu">
+        <ul>
+            <a href="/index">Home</a>
+            {% if 1 in permissoes %}
+            <a href="/dashboard">Dashboard</a>
+            {% endif %}
+            {% if 1 in permissoes %}
+            <a href="/seguranca">Segurança</a>
+            {% endif %}
+            {% if 1 in permissoes %}
+            <a href="/cadastro">Cadastro</a>
+            {% endif %}
+            {% if 1 in permissoes or 2 in permissoes or 3 in permissoes %}
+            <a href="/manipulacao_arquivo">Manipulação de arquivo</a>
+            {% endif %}
+        </ul>
+        <ul>
+            <a href="/perfil">Editar Perfil</a>
+            <a href="{{ url_for('sair') }}">Sair</a>
+        </ul>
+    </div>
+</header>

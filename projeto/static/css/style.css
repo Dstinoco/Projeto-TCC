@@ -1,0 +1,274 @@
+.login {
+  background-image: url("../img/fundo2_med.png");
+  background-size: cover;
+  /* Ajusta o tamanho da imagem para caber completamente no elemento */
+  background-repeat: no-repeat;
+  /* Evita que a imagem se repita */
+  background-position: center;
+  /* Centraliza a imagem no elemento */
+  background-attachment: fixed;
+  /* Mantém a imagem fixa durante a rolagem */
+}
+
+
+.logo_inicio {
+  max-width: 20%;
+
+}
+
+#nav-top {
+  background-color: #4d4d4d;
+}
+
+.card-link {
+  background-color: #f7f7f700;
+}
+
+
+#tabela {
+  background-color: #006631;
+  color: #006631;
+}
+
+
+.collapse {
+  &:not(.show) {
+    display: none;
+  }
+}
+
+/* tabelas */
+/* tabelas */
+
+.hidden {
+  display: none;
+}
+
+/* tabela Usuario */
+
+.table th,
+.table td {
+  white-space: nowrap;
+  /* Impede a quebra de linha dentro das células */
+}
+
+.table-fixed {
+  table-layout: fixed;
+  /* Define layout fixo para a tabela */
+  width: 100%;
+  /* Garante que a tabela ocupe toda a largura do contêiner */
+}
+
+.table-fixed th,
+.table-fixed td {
+  overflow: hidden;
+  /* Oculta o conteúdo que excede a largura da célula */
+  text-overflow: ellipsis;
+  /* Adiciona reticências (...) ao texto que excede a largura da célula */
+}
+
+.table-fixed th:nth-child(1),
+.table-fixed td:nth-child(1) {
+  width: 10%;
+  /* Ajusta a largura da coluna ID */
+}
+
+.table-fixed th:nth-child(2),
+.table-fixed td:nth-child(2) {
+  width: 20%;
+  /* Ajusta a largura da coluna Nome */
+}
+
+.table-fixed th:nth-child(3),
+.table-fixed td:nth-child(3) {
+  width: 50%;
+  /* Ajusta a largura da coluna Email */
+}
+
+.table-fixed th:nth-child(4),
+.table-fixed td:nth-child(4),
+.table-fixed th:nth-child(5),
+.table-fixed td:nth-child(5),
+.table-fixed th:nth-child(6),
+.table-fixed td:nth-child(6),
+.table-fixed th:nth-child(7),
+.table-fixed td:nth-child(7) {
+  width: 6.67%;
+  /* Ajusta a largura das colunas de ícones */
+}
+
+
+
+/* tabela Grupo x Usuario */
+
+.table-grupo-user {
+  table-layout: fixed;
+  /* Define layout fixo para a tabela */
+  width: 100%;
+  /* Garante que a tabela ocupe toda a largura do contêiner */
+}
+
+.table-grupo-user th,
+.table-grupo-user td {
+  overflow: hidden;
+  /* Oculta o conteúdo que excede a largura da célula */
+  text-overflow: ellipsis;
+  /* Adiciona reticências (...) ao texto que excede a largura da célula */
+}
+
+.table-grupo-user th:nth-child(1),
+.table-grupo-user td:nth-child(1) {
+  width: 50%;
+  /* Ajusta a largura da coluna Nome */
+}
+
+.table-grupo-user th:nth-child(2),
+.table-grupo-user td:nth-child(1) {
+  width: 45%;
+  /* Ajusta a largura da coluna Email */
+}
+
+.table-grupo-user th:nth-child(3),
+.table-grupo-user td:nth-child(3) {
+  width: 6.67%;
+  /* Ajusta a largura das colunas de ícones */
+}
+
+
+
+/* tabela Grupo */
+
+.table-grupo {
+  table-layout: fixed;
+  /* Define layout fixo para a tabela */
+  width: 100%;
+  /* Garante que a tabela ocupe toda a largura do contêiner */
+}
+
+.table-grupo th,
+.table-grupo td {
+  overflow: hidden;
+  /* Oculta o conteúdo que excede a largura da célula */
+  text-overflow: ellipsis;
+  /* Adiciona reticências (...) ao texto que excede a largura da célula */
+}
+
+.table-grupo th:nth-child(1),
+.table-grupo td:nth-child(1) {
+  width: 10%;
+  /* Ajusta a largura da coluna ID */
+}
+
+.table-grupo th:nth-child(2),
+.table-grupo td:nth-child(2) {
+  width: 85%;
+  /* Ajusta a largura da coluna Nome */
+}
+
+.table-grupo th:nth-child(3),
+.table-grupo td:nth-child(3) {
+  width: 5%;
+  /* Ajusta a largura das colunas de ícones */
+}
+
+.table-grupo th:nth-child(4),
+.table-grupo td:nth-child(4) {
+  width: 5%;
+  /* Ajusta a largura das colunas de ícones */
+}
+
+/* tabela Grupo x Layout */
+
+.table-grupo-layout {
+  table-layout: fixed;
+  /* Define layout fixo para a tabela */
+  width: 100%;
+  /* Garante que a tabela ocupe toda a largura do contêiner */
+}
+
+.table-grupo-layout th,
+.table-grupo-layout td {
+  overflow: hidden;
+  /* Oculta o conteúdo que excede a largura da célula */
+  text-overflow: ellipsis;
+  /* Adiciona reticências (...) ao texto que excede a largura da célula */
+}
+
+.table-grupo-layout th:nth-child(1),
+.table-grupo-layout td:nth-child(1) {
+  width: 45%;
+  /* Ajusta a largura da coluna layout */
+}
+
+.table-grupo-layout th:nth-child(2),
+.table-grupo-layout td:nth-child(2) {
+  width: 45%;
+  /* Ajusta a largura da coluna grupo */
+}
+
+.table-grupo-layout th:nth-child(3),
+.table-grupo-layout td:nth-child(3) {
+  width: 5%;
+  /* Ajusta a largura das colunas de ícones */
+}
+
+
+
+.table-arquivo {
+  table-layout: fixed;
+  /* Define layout fixo para a tabela */
+  width: 100%;
+  /* Garante que a tabela ocupe toda a largura do contêiner */
+}
+
+.table-arquivo th,
+.table-arquivo td {
+  overflow: hidden;
+  /* Oculta o conteúdo que excede a largura da célula */
+  text-overflow: ellipsis;
+  /* Adiciona reticências (...) ao texto que excede a largura da célula */
+}
+
+.table-arquivo th:nth-child(1),
+.table-arquivo td:nth-child(1) {
+  width: 7%;
+  /* Ajusta a largura da coluna ID */
+}
+
+.table-arquivo th:nth-child(2),
+.table-arquivo td:nth-child(2) {
+  width: 10%;
+  /* Ajusta a largura da coluna Nome */
+}
+
+.table-arquivo th:nth-child(3),
+.table-arquivo td:nth-child(3) {
+  width: 60%;
+  /* Ajusta a largura das colunas de Colunas */
+}
+
+.table-arquivo th:nth-child(4),
+.table-arquivo td:nth-child(4) {
+  width: 5%;
+  /* Ajusta a largura das colunas de ícones */
+}
+
+.table-arquivo th:nth-child(5),
+.table-arquivo td:nth-child(5) {
+  width: 5%;
+  /* Ajusta a largura das colunas de ícones */
+}
+
+
+/* tabelas */
+/* tabelas */
+
+
+
+
+
+.hidden {
+  display: none;
+  /* Oculta a div inicialmente */
+
+}

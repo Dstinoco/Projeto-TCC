@@ -1,0 +1,36 @@
+/* Estilos gerais para resetar margens e paddings padrões */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+/* Import Google font - Poppins */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+.content-upload{
+  align-items: center;
+  justify-content: center;
+}
+
+.teste{
+    text-align: center;
+    width: 200px;
+    -webkit-box-align: center;
+    align-items: center;
+    background-color: #A0C938;
+    border-radius: 56px;
+    border: none;
+    outline: none;
+    padding: 16px 24px;
+    transition: all 0.4s ease 0s;
+    cursor: pointer;
+}
+
+.teste:hover{
+    background-color: #8fb13b;
+}

@@ -1,0 +1,24 @@
+{% extends 'base/base.html' %}
+
+{% block conteudo %}
+
+
+    {% set mensagens = get_flashed_messages(with_categories=true) %}
+
+
+    <div class="container py-5 h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="card shadow-2-strong" style="border-radius: 1rem;">
+                <div class="card-body p-5 text-center ">
+
+                    {% include 'base/flash.html' %}
+
+                    <img src="../static/img/close-circle-svgrepo-com.svg" alt="">
+                    <h2 style="color:#f00">Acesso negado</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}
